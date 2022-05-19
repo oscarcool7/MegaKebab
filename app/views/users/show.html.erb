@@ -1,7 +1,7 @@
 <div class="text-center">
   <h1><%= @user.name %></h1>
 
-  <%= image_tag user_avatar(@user), class: "mt-3 img-fluid" %>
+  <%= image_tag user_avatar(@user), class: "mt-3 rounded-3 img-fluid" %>
 
   <% if @user == current_user %>
     <p class="mt-4">

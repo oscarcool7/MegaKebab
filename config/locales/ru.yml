@@ -4,11 +4,18 @@ ru:
       event: "Событие"
       user: "Пользователь"
     attributes:
+      comment:
+        body: "Ваш комментарий"
+        user_name: "Ваше имя"
       event:
         address: "Место проведения"
         datetime: "Дата и время"
         description: "Описание"
         title: "Название"
+      subscription:
+        user: "Пользователь"
+        user_email: "Email"
+        user_name: "Имя"
       user:
         email: "Email"
         name: "Имя"
@@ -28,12 +35,20 @@ ru:
       created: "Вы создали новое мероприятие!"
       destroyed: "Вы удалили мероприятие!"
       updated: "Вы обновили мероприятие!"
+    subscriptions:
+      created: "Вы подписаны на это событие!"
+      destroyed: "Участник отписан!"
+      error: "Подписка/отписка не сработала!"
     users:
       updated: "Вы обновили профиль!"
 
   comments:
     comment:
       destroy_confirm: "Вы уверены, что хотите удалить этот комментарий?"
+
+  subscriptions:
+    subscription:
+      destroy_confirm: "Вы уверены, что хотите удалить эту подписку?"
 
   views:
     buttons:
@@ -43,6 +58,8 @@ ru:
       recover_password: "Восстановить пароль"
       remember_me: "Запомни меня"
       save: "Сохранить"
+      send: "Отправить"
+      subscribe: "Подписаться"
     events:
       create:
         action: "Создать событие"
