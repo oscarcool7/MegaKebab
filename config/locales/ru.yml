@@ -28,6 +28,10 @@ ru:
       updated: "Вы обновили профиль!"
 
   views:
+    events:
+      destroy:
+        action: "Удалить"
+        confirm: "Вы точно хотите удалить событие?"
     mistakes:
       one: "%{count} ошибка"
       few: "%{count} ошибки"
