@@ -10,6 +10,8 @@ class Subscription < ApplicationRecord
   validates :user_email, uniqueness: {scope: :event_id}, unless: -> { user.present? }
   validates :user_name, presence: true, unless: -> { user.present? }
 
+  validate :unregistered_user_cannot_sign_registered_users, unless: -> { user.present? }
+
   def user_name
     if user.present?
       user.name
@@ -24,5 +26,11 @@ class Subscription < ApplicationRecord
     else
       super
     end
+  end
+
+  private
+
+  def unregistered_user_cannot_sign_registered_users
+    errors.add(:user_email, :already_in_use) unless User.find_by(email: user_email).nil?
   end
 end

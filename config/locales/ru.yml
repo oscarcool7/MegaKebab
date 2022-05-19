@@ -21,6 +21,15 @@ ru:
         name: "Имя"
         password: "Пароль"
         password_confirmation: "Подтверждение пароля"
+    errors:
+      models:
+        subscription:
+          attributes:
+            user_email:
+              already_in_use: "уже используется"
+    models:
+      event: "Событие"
+      user: "Пользователь"
 
   app:
     company: "Охапка дров"
