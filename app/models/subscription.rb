@@ -26,10 +26,10 @@ class Subscription < ApplicationRecord
   private
 
   def current_user_can_subscribe
-    errors.add(:user, :own_event) if event.user = user
+    errors.add(:user, :own_event) if event.user == user
   end
 
   def unregistered_user_cannot_sign_registered_users
-    errors.add(:user_email, :already_in_use) unless User.find_by(email: user_email).nil?
+    errors.add(:user_email, :already_in_use) if User.exists?(email: user_email)
   end
 end
