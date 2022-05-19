@@ -26,3 +26,9 @@ ru:
       updated: "Вы обновили мероприятие!"
     users:
       updated: "Вы обновили профиль!"
+
+  views:
+    mistakes:
+      one: "%{count} ошибка"
+      few: "%{count} ошибки"
+      many: "%{count} ошибок"
