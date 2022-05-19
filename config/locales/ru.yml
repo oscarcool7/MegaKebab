@@ -25,6 +25,8 @@ ru:
       models:
         subscription:
           attributes:
+            user:
+              own_event: "нельзя подписаться на свое событие"
             user_email:
               already_in_use: "уже используется"
     models:

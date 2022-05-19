@@ -4,31 +4,30 @@ class Subscription < ApplicationRecord
   belongs_to :event
   belongs_to :user, optional: true
 
-  validates :event, presence: true
-  validates :user, uniqueness: {scope: :event_id}, if: -> { user.present? }
-  validates :user_email, presence: true, format: { with: VALID_EMAIL }, unless: -> { user.present? }
-  validates :user_email, uniqueness: {scope: :event_id}, unless: -> { user.present? }
-  validates :user_name, presence: true, unless: -> { user.present? }
+  with_options if: -> { user.present? } do
+    validate :current_user_can_subscribe
+    validates :user, uniqueness: { scope: :event_id }
+  end
 
-  validate :unregistered_user_cannot_sign_registered_users, unless: -> { user.present? }
+  with_options unless: -> { user.present? } do
+    validate :unregistered_user_cannot_sign_registered_users
+    validates :user_email, presence: true, uniqueness: { scope: :event_id }, format: { with: VALID_EMAIL }
+    validates :user_name, presence: true
+  end
 
   def user_name
-    if user.present?
-      user.name
-    else
-      super
-    end
+    user&.name || super
   end
 
   def user_email
-    if user.present?
-      user.email
-    else
-      super
-    end
+    user&.email || super
   end
 
   private
+
+  def current_user_can_subscribe
+    errors.add(:user, :own_event) if event.user = user
+  end
 
   def unregistered_user_cannot_sign_registered_users
     errors.add(:user_email, :already_in_use) unless User.find_by(email: user_email).nil?
