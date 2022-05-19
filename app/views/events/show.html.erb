@@ -15,10 +15,9 @@
 
           <% if current_user_can_edit?(@event) %>
             <div class="my-3">
-              <%= link_to "Изменить", edit_event_path(@event), class: "btn btn-primary" %>
+              <%= link_to t("views.events.edit.action"), edit_event_path(@event), class: "btn btn-primary" %>
               <%= button_to t("views.events.destroy.action"), event_path(@event), method: :delete,
-                form: { data: { turbo_confirm: t("views.events.destroy.confirm") } },
-                class: "btn btn-danger mt-3" %>
+                form: { data: { turbo_confirm: t("views.events.destroy.confirm") } }, class: "btn btn-danger mt-3" %>
             </div>
           <% end %>
         </div>

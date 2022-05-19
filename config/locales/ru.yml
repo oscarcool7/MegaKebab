@@ -28,11 +28,37 @@ ru:
       updated: "Вы обновили профиль!"
 
   views:
+    buttons:
+      cancel: "вернуться"
+      change_password: "Сменить пароль"
+      destroy_account: "Удалить мой аккаунт"
+      recover_password: "Восстановить пароль"
+      remember_me: "Запомни меня"
+      save: "Сохранить"
     events:
+      create:
+        action: "Создать событие"
       destroy:
         action: "Удалить"
         confirm: "Вы точно хотите удалить событие?"
+      edit:
+        action: "Изменить"
+    links:
+      forgot_password: "Забыли свой пароль?"
+      log_in: "Войти"
+      sign_up: "Зарегистрироваться"
     mistakes:
       one: "%{count} ошибка"
       few: "%{count} ошибки"
       many: "%{count} ошибок"
+    users:
+      edit:
+        action: "Сменить пароль"
+      password:
+        edit:
+          action: "Вы уверены, что хотите удалить свой аккаунт?"
+          confirm_password: "Подтверждение пароля"
+          current_password: "Текущий пароль"
+          new_password: "Новый пароль"
+      update:
+        action: "Редактировать профиль"

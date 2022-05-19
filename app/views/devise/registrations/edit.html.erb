@@ -4,7 +4,7 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="col-md-4 mt-4">
-    <%= f.label :password, "Новый пароль", class: "fw-bold" %>
+    <%= f.label :password, t("views.users.password.edit.new_password"), class: "fw-bold" %>
     <% if @minimum_password_length %>
       <em>(Не менее <%= @minimum_password_length %> символов)</em>
     <% end %>
@@ -12,25 +12,25 @@
   </div>
 
   <div class="col-md-4 fw-bold mt-3">
-    <%= f.label :password_confirmation, "Подтверждение пароля" %>
+    <%= f.label :password_confirmation, t("views.users.password.edit.confirm_password") %>
     <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
   </div>
 
   <div class="col-md-4 mt-3">
-    <%= f.label :current_password, "Текущий пароль", class: "fw-bold" %>
+    <%= f.label :current_password, t("views.users.password.edit.current_password"), class: "fw-bold" %>
     <i>(нам нужен ваш текущий пароль для подтверждения ваших изменений)</i>
     <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
   </div>
 
   <div class="my-3">
-    <%= f.submit "Сменить пароль", class: "btn btn-success" %>
+    <%= f.submit t("views.buttons.change_password"), class: "btn btn-success" %>
   </div>
 <% end %>
 
 <h3 class="mt-5">Удалить аккаунт</h3>
 
-<p>Unhappy? <%= button_to "Удалить мой аккаунт", registration_path(resource_name),
-  form: { data: { turbo_confirm: "Вы уверены, что хотите удалить свой аккаунт?" } },
+<p>Unhappy? <%= button_to t("views.buttons.destroy_account"), registration_path(resource_name),
+  form: { data: { turbo_confirm: t("views.users.password.edit.action") } },
   method: :delete, class: "btn btn-danger" %></p>
 
 <%= link_to "Назад", :back %>
