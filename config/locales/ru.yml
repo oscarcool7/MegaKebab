@@ -20,12 +20,20 @@ ru:
     name: "Крутые шашлыки"
 
   controllers:
+    comments:
+      created: "Ваш комментарий добавлен!"
+      destroyed: "Комментарий удален!"
+      error: "Ошибка с комментарием!"
     events:
       created: "Вы создали новое мероприятие!"
       destroyed: "Вы удалили мероприятие!"
       updated: "Вы обновили мероприятие!"
     users:
       updated: "Вы обновили профиль!"
+
+  comments:
+    comment:
+      destroy_confirm: "Вы уверены, что хотите удалить этот комментарий?"
 
   views:
     buttons:
