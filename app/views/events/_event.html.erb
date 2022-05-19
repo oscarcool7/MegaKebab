@@ -1,5 +1,5 @@
 <div class="col-sm-6 col-md-4">
-  <div class="card thumbnail">
+  <div class="card thumbnail mb-3">
 
     <%= content_tag "div", "", class: "event-background",
       style: "background-image: url(#{asset_path("event_thumb.jpg")})" %>
@@ -12,7 +12,7 @@
           </div>
 
           <div class="card-text">
-            <h4><small><%= event.datetime %></small></h4>
+            <h4><small><%= l event.datetime, format: :long %></small></h4>
             <div class="mt-2"><%= event.address %></div>
           </div>
         </div>
