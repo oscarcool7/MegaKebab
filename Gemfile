@@ -7,6 +7,7 @@ gem "bootsnap", require: false
 gem "cssbundling-rails"
 gem "devise"
 gem "devise-i18n"
+gem "image_processing", ">= 1.2"
 gem "jbuilder"
 gem "jsbundling-rails"
 gem "puma", "~> 5.0"

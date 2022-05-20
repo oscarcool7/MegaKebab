@@ -4,6 +4,10 @@ module ApplicationHelper
   end
 
   def user_avatar(user)
-    asset_path("user.jpg")
+    if user.avatar.attached?
+      user.avatar
+    else
+      asset_path("user.jpg")
+    end
   end
 end

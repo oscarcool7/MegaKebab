@@ -1,8 +1,5 @@
 ru:
   activerecord:
-    models:
-      event: "Событие"
-      user: "Пользователь"
     attributes:
       comment:
         body: "Ваш комментарий"
@@ -12,11 +9,14 @@ ru:
         datetime: "Дата и время"
         description: "Описание"
         title: "Название"
+      photo:
+        photo: "Фотография"
       subscription:
         user: "Пользователь"
         user_email: "Email"
         user_name: "Имя"
       user:
+        avatar: "Аватар"
         email: "Email"
         name: "Имя"
         password: "Пароль"
@@ -31,6 +31,7 @@ ru:
               already_in_use: "уже используется"
     models:
       event: "Событие"
+      photo: "Фотография"
       user: "Пользователь"
 
   app:
@@ -46,6 +47,10 @@ ru:
       created: "Вы создали новое мероприятие!"
       destroyed: "Вы удалили мероприятие!"
       updated: "Вы обновили мероприятие!"
+    photos:
+      created: "Вы добавили фотку к событию!"
+      destroyed: "Вы удалили фотку!"
+      error: "Что-то не так с фоткой!"
     subscriptions:
       created: "Вы подписаны на это событие!"
       destroyed: "Участник отписан!"
@@ -71,6 +76,7 @@ ru:
       save: "Сохранить"
       send: "Отправить"
       subscribe: "Подписаться"
+      upload: "Загрузить"
     events:
       create:
         action: "Создать событие"

@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  resources :subscriptions
   devise_for :users
   root to: "events#index"
 
   resources :events do
     resources :comments, only: %i[create destroy]
+    resources :photos, only: %i[create destroy]
     resources :subscriptions, only: %i[create destroy]
   end
 
