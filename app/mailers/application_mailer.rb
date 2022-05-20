@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "megakebab@heroku.com"
+  default from: ENV["MAILJET_SENDER"]
   layout "mailer"
 end
