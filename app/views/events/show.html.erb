@@ -17,7 +17,8 @@
             <div class="my-3">
               <%= link_to t("views.events.edit.action"), edit_event_path(@event), class: "btn btn-primary" %>
               <%= button_to t("views.events.destroy.action"), event_path(@event), method: :delete,
-                form: { data: { turbo_confirm: t("views.events.destroy.confirm") } }, class: "btn btn-danger mt-3" %>
+                form: { data: { turbo_confirm: t("views.events.destroy.confirm") } }, class: "btn btn-danger ms-2",
+                form_class: "d-inline" %>
             </div>
           <% end %>
         </div>
@@ -27,6 +28,16 @@
 
   <div class="row">
     <div class="col-md-8">
+      <div class="event-photos">
+        <div class="event-photos-gallery">
+          <%= render partial: "photos/photo", collection: @event.photos.except(@new_photo) %>
+        </div>
+
+        <div class="event-photo-form mt-3">
+          <%= render partial: "photos/form", locals: { photo: @new_photo || @event.photos.build } %>
+        </div>
+      </div>
+
       <div class="event-comments mt-3">
         <%= render partial: "comments/form", locals: { comment: @new_comment || @event.comments.build } %>
         <% if @event.comments.except(@new_comment).any? %>

@@ -12,6 +12,11 @@
   </div>
 
   <div class="mt-2">
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar, class: "form-control" %>
+  </div>
+
+  <div class="mt-2">
     <%= f.submit t("views.buttons.save"), class: "btn btn-primary" %>
       или <%= link_to t("views.buttons.cancel"), :back %>
   </div>

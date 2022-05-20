@@ -1,0 +1,5 @@
+<div class="event-photo mt-3">
+  <%= image_tag photo.photo.variant(:thumb), class: "me-2" %>
+
+  Добавил <%= render partial: "users/user", object: photo.user %>
+</div>

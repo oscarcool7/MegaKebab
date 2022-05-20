@@ -2,11 +2,11 @@
   <% if subscription.user.present? %>
     <%= render partial: "users/user", object: subscription.user %>
   <% else %>
-    <em><%= subscription.user_name %></em>
+    <em class="me-1"><%= subscription.user_name %></em>
   <% end %>
 
   <% if current_user_can_edit?(subscription) %>
-    <%= button_to fa_icon("x-octagon-fill"), event_subscription_path(subscription.event, subscription),
-      method: :delete, form: { data: { turbo_confirm: t(".destroy_confirm") } }, class: "my-1" %>
+    <%= button_to fa_icon("x-octagon-fill"), event_subscription_path(subscription.event, subscription), method: :delete,
+      form: { data: { turbo_confirm: t(".destroy_confirm") } }, class: "me-2", form_class: "d-inline" %>
   <% end %>
 </span>
