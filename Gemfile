@@ -9,9 +9,11 @@ gem "bootsnap", require: false
 gem "cssbundling-rails"
 gem "devise"
 gem "devise-i18n"
+gem "dotenv-rails"
 gem "image_processing", ">= 1.2"
 gem "jbuilder"
 gem "jsbundling-rails"
+gem "mailjet"
 gem "puma", "~> 5.0"
 gem "rails", "~> 7.0.3"
 gem "rails-i18n", "~> 7.0.0"
@@ -25,6 +27,7 @@ group :development, :test do
 end
 
 group :development do
+  gem "letter_opener"
   gem "web-console"
 end
 
