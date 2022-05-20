@@ -10,6 +10,7 @@ class User < ApplicationRecord
     attachable.variant :thumb, resize_to_fill: [100, 100]
   end
 
+  validates :avatar, content_type: %i[img png jpg jpeg]
   validates :name, presence: true, length: { maximum: 35 }
 
   before_validation :set_name, on: :create
