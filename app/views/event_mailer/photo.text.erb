@@ -1,0 +1,11 @@
+<%= t(".title") %>
+----
+
+<%= image_tag @photo.photo.variant(:thumb) %>
+
+<%= t(".author") %>: <%= @photo.user.name %>
+
+--------------------------------
+<%= t(".event") %>: <%= @event.title %>
+<%= t(".datetime") %>: <%= l @event.datetime, format: :long %>
+<%= t(".owner") %>: <%= @event.user.name %>
