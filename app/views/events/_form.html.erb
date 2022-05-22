@@ -22,6 +22,11 @@
   </div>
 
   <div class="mt-2">
+    <%= f.label :pincode %>
+    <%= f.text_field :pincode, class: "form-control" %>
+  </div>
+
+  <div class="mt-2">
     <%= f.submit t("views.buttons.save"), class: "btn btn-primary" %> или <%= link_to t("views.buttons.cancel"), :back %>
   </div>
 <% end %>

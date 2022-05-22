@@ -8,6 +8,7 @@ ru:
         address: "Место проведения"
         datetime: "Дата и время"
         description: "Описание"
+        pincode: "Пин-код"
         title: "Название"
       photo:
         photo: "Фотография"
@@ -47,6 +48,7 @@ ru:
       created: "Вы создали новое мероприятие!"
       destroyed: "Вы удалили мероприятие!"
       updated: "Вы обновили мероприятие!"
+      wrong_pincode: "Неверный пин-код!"
     photos:
       created: "Вы добавили фотку к событию!"
       destroyed: "Вы удалили фотку!"
@@ -96,6 +98,7 @@ ru:
       cancel: "вернуться"
       change_password: "Сменить пароль"
       destroy_account: "Удалить мой аккаунт"
+      main_page: "На главную"
       recover_password: "Восстановить пароль"
       remember_me: "Запомни меня"
       save: "Сохранить"
