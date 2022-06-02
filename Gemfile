@@ -5,11 +5,13 @@ ruby '3.1.1'
 
 gem 'active_storage_validations'
 gem 'aws-sdk-s3'
+gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
 gem 'bootsnap', require: false
 gem 'cssbundling-rails'
 gem 'devise'
 gem 'devise-i18n'
 gem 'dotenv-rails'
+gem 'ed25519', '>= 1.2', '< 2.0'
 gem 'image_processing', '>= 1.2'
 gem 'jbuilder'
 gem 'jsbundling-rails'
