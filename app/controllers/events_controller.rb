@@ -1,8 +1,9 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
-  before_action :set_event, only: %i[show]
-  before_action :set_current_user_event, only: %i[edit destroy update]
+  before_action :set_event, only: %i[destroy edit show update]
   before_action :password_guard!, only: %i[show]
+
+  after_action :verify_authorized, only: %i[destroy edit show update]
 
   def create
    @event = current_user.events.build(event_params)
@@ -15,12 +16,15 @@ class EventsController < ApplicationController
   end
 
   def destroy
+    authorize @event
+
     @event.destroy
 
     redirect_to root_path, notice: I18n.t("controllers.events.destroyed")
   end
 
   def edit
+    authorize @event
   end
 
   def index
@@ -32,11 +36,15 @@ class EventsController < ApplicationController
   end
 
   def show
+    authorize @event
+
     @new_comment = @event.comments.build(params[:comment])
     @new_subscription = @event.subscriptions.build(params[:subscription])
   end
 
   def update
+    authorize @event
+
     if @event.update(event_params)
       redirect_to @event, notice: I18n.t("controllers.events.updated")
     else
@@ -66,10 +74,6 @@ class EventsController < ApplicationController
       end
       render "password_form"
     end
-  end
-
-  def set_current_user_event
-    @event = current_user.events.find(params[:id])
   end
 
   def set_event

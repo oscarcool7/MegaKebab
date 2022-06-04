@@ -89,6 +89,9 @@ ru:
       subject: "Новая подписка на %{event}"
       title: "Новая подписка"
 
+  pundit:
+    not_authorized: "Вам сюда нельзя! Зарегистрируйтесь или войдите на сайт!"
+
   subscriptions:
     subscription:
       destroy_confirm: "Вы уверены, что хотите удалить эту подписку?"
