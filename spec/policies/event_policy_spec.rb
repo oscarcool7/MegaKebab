@@ -31,9 +31,15 @@ RSpec.describe EventPolicy, type: :policy do
   end
 
   context "unregistered user" do
-    permissions :edit?, :destroy?, :show?, :update? do
+    permissions :edit?, :destroy?, :update? do
       it "does not get the access" do
         is_expected.not_to permit(nil, event)
+      end
+    end
+
+    permissions :show? do
+      it "gets the access" do
+        is_expected.to permit(nil, event)
       end
     end
   end

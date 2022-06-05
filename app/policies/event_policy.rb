@@ -8,7 +8,7 @@ class EventPolicy < ApplicationPolicy
   end
 
   def show?
-    user.present?
+    true
   end
 
   def update?
