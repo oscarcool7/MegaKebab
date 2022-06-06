@@ -7,7 +7,12 @@
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
-server "megakebab.ru", user: "deploy", roles: %w[app db web]
+server "megakebab.ru", user: "deploy", roles: %w[app db resque_worker web]
+
+# При запуске воркера загружать Rails приложение
+set :resque_environment_task, true
+# Будет запущен один воркер, обслуживающий очереди
+set :workers, { "#{fetch(:application)}*" => 1 }
 
 # role-based syntax
 # ==================

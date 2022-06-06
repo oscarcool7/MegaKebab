@@ -36,6 +36,7 @@ group :development do
   gem "capistrano-bundler", "~> 2.0"
   gem "capistrano-passenger"
   gem "capistrano-rails", "~> 1.3", require: false
+  gem "capistrano-resque", "~> 0.2.3", require: false
   gem "capistrano-rvm"
   gem "letter_opener"
   gem "web-console"
