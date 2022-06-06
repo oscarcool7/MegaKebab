@@ -97,4 +97,7 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
 
   config.action_mailer.default_url_options = { host: "megakebab.ru" }
+
+  config.active_job.queue_adapter = :resque
+  config.active_job.queue_name_prefix = "megakebab_#{Rails.env}"
 end
