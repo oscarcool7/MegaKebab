@@ -36,9 +36,5 @@ module Last
     config.generators.system_tests = nil
 
     config.active_storage.variant_processor = :vips
-
-    config.active_job.queue_adapter = :resque
-    # Префикс для имени очередей
-    config.active_job.queue_name_prefix = "megakebab_#{Rails.env}"
   end
 end
