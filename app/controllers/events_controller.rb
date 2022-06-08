@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: %i[destroy edit show update]
   before_action :password_guard!, only: %i[show]
 
-  after_action :verify_authorized, only: %i[destroy edit show update]
+  after_action :verify_authorized, only: %i[create destroy edit new show update]
 
   def create
    @event = current_user.events.build(event_params)

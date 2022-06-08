@@ -1,9 +1,11 @@
 require "rails_helper"
 
 RSpec.describe EventPolicy, type: :policy do
-  let(:user_is_an_owner) { User.new }
-  let(:user_is_not_an_owner) { User.new }
-  let(:event) { user_is_an_owner.events.build }
+  let(:user_is_the_owner) { User.new }
+  let(:user_is_not_the_owner) { User.new }
+  let(:event) { Event.new(user: user_is_the_owner, pincode: "qwerty") }
+  let(:event_context1) { EventContext.new(event: event, pincode: "qwerty") }
+  let(:event_context2) { EventContext.new(event: event, pincode: "qwe") }
 
   subject { EventPolicy }
 
@@ -11,21 +13,29 @@ RSpec.describe EventPolicy, type: :policy do
     permissions :edit?, :destroy?, :update? do
       context "is the owner of event" do
         it "gets the access" do
-          is_expected.to permit(user_is_an_owner, event)
+          is_expected.to permit(user_is_the_owner, event)
         end
       end
 
       context "is not the owner of event" do
         it "does not get the access" do
-          is_expected.not_to permit(user_is_not_an_owner, event)
+          is_expected.not_to permit(user_is_not_the_owner, event)
         end
       end
     end
 
     permissions :show? do
-      it "gets the access" do
-        is_expected.to permit(user_is_an_owner, event)
-        is_expected.to permit(user_is_not_an_owner, event)
+      context "the right pincode" do
+        it "gets the access" do
+          is_expected.to permit(user_is_the_owner, event_context1)
+          is_expected.to permit(user_is_not_the_owner, event_context1)
+        end
+      end
+
+      context "the wrong pincode" do
+        it "does not get the access" do
+          is_expected.not_to permit(user_is_not_the_owner, event_context2)
+        end
       end
     end
   end
@@ -38,8 +48,16 @@ RSpec.describe EventPolicy, type: :policy do
     end
 
     permissions :show? do
-      it "gets the access" do
-        is_expected.to permit(nil, event)
+      context "the right pincode" do
+        it "gets the access" do
+          is_expected.to permit(nil, event_context1)
+        end
+      end
+
+      context "the wrong pincode" do
+        it "does not get the access" do
+          is_expected.not_to permit(nil, event_context2)
+        end
       end
     end
   end
