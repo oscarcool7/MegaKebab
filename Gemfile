@@ -16,6 +16,9 @@ gem "image_processing", ">= 1.2"
 gem "jbuilder"
 gem "jsbundling-rails"
 gem "mailjet"
+gem "omniauth"
+gem "omniauth-facebook"
+gem "omniauth-rails_csrf_protection"
 gem "puma", "~> 5.0"
 gem "pundit", "~> 1.1"
 gem "rails", "~> 7.0.3"
@@ -48,6 +51,7 @@ end
 
 group :test do
   gem "capybara"
+  gem "factory_bot_rails"
   gem "selenium-webdriver"
   gem "webdrivers"
 end

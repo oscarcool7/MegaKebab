@@ -119,6 +119,7 @@ ru:
     links:
       forgot_password: "Забыли свой пароль?"
       log_in: "Войти"
+      log_in_with: "Войти через %{source}"
       sign_up: "Зарегистрироваться"
     mistakes:
       one: "%{count} ошибка"
