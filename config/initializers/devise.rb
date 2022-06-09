@@ -288,6 +288,7 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   # config.omniauth :facebook, ENV["OMNIAUTH_FACEBOOK_ID"], ENV["OMNIAUTH_FACEBOOK_KEY"]
   config.omniauth :facebook, ENV["OMNIAUTH_FACEBOOK_ID_PROD"], ENV["OMNIAUTH_FACEBOOK_KEY_PROD"]
+  config.omniauth :vkontakte, ENV["OMNIAUTH_VKONTAKTE_ID"], ENV["OMNIAUTH_VKONTAKTE_KEY"], { scope: "email" }
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
