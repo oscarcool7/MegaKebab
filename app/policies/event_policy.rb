@@ -3,8 +3,16 @@ class EventPolicy < ApplicationPolicy
     update?
   end
 
+  def create?
+    new?
+  end
+
   def destroy?
     update?
+  end
+
+  def new?
+    user.present?
   end
 
   def show?
@@ -13,12 +21,6 @@ class EventPolicy < ApplicationPolicy
 
   def update?
     user_is_owner?(record)
-  end
-
-  class Scope < Scope
-    def resolve
-      scope
-    end
   end
 
   private
