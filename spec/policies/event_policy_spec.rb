@@ -1,64 +1,61 @@
 require "rails_helper"
 
 RSpec.describe EventPolicy, type: :policy do
-  let(:user_is_the_owner) { User.new }
-  let(:user_is_not_the_owner) { User.new }
-  let(:event) { Event.new(user: user_is_the_owner, pincode: "qwerty") }
-  let(:event_context1) { EventContext.new(event: event, pincode: "qwerty") }
-  let(:event_context2) { EventContext.new(event: event, pincode: "qwe") }
+  let(:user) { FactoryBot.create(:user) }
+  let(:event_pincodeless) { FactoryBot.create(:event, user: user) }
+  let(:event_pincoded) { FactoryBot.create(:event, user: user, pincode: "qwerty") }
+  let(:cookies) { { "events_#{event_pincoded.id}_pincode" => "qwerty" } }
 
   subject { EventPolicy }
 
-  context "authorized user" do
-    permissions :edit?, :destroy?, :update? do
-      context "is the owner of event" do
-        it "gets the access" do
-          is_expected.to permit(user_is_the_owner, event)
-        end
-      end
+  context "user is the owner of event" do
+    let(:event_owner) { UserContext.new(user, {}) }
 
-      context "is not the owner of event" do
-        it "does not get the access" do
-          is_expected.not_to permit(user_is_not_the_owner, event)
-        end
-      end
+    permissions :destroy?, :edit?, :update?  do
+      it { is_expected.to permit(event_owner, event_pincodeless) }
     end
 
     permissions :show? do
-      context "the right pincode" do
-        it "gets the access" do
-          is_expected.to permit(user_is_the_owner, event_context1)
-          is_expected.to permit(user_is_not_the_owner, event_context1)
-        end
-      end
-
-      context "the wrong pincode" do
-        it "does not get the access" do
-          is_expected.not_to permit(user_is_not_the_owner, event_context2)
-        end
-      end
+      it { is_expected.to permit(event_owner, event_pincodeless) }
+      it { is_expected.to permit(event_owner, event_pincoded) }
     end
   end
 
-  context "unregistered user" do
-    permissions :edit?, :destroy?, :update? do
-      it "does not get the access" do
-        is_expected.not_to permit(nil, event)
-      end
+  context "user is not owner of event" do
+    let(:usual_user) { FactoryBot.create(:user) }
+    let(:usual_user_pincodeless) { UserContext.new(usual_user, {}) }
+    let(:usual_user_pincoded) { UserContext.new(usual_user, cookies) }
+
+    permissions :new?, :create? do
+      it { is_expected.to permit(usual_user_pincodeless) }
+    end
+
+    permissions :destroy?, :edit?, :update?  do
+      it { is_expected.not_to permit(usual_user_pincodeless, event_pincodeless) }
     end
 
     permissions :show? do
-      context "the right pincode" do
-        it "gets the access" do
-          is_expected.to permit(nil, event_context1)
-        end
-      end
+      it { is_expected.to permit(usual_user_pincodeless, event_pincodeless) }
+      it { is_expected.not_to permit(usual_user_pincodeless, event_pincoded) }
+      it { is_expected.to permit(usual_user_pincoded, event_pincoded) }
+    end
+  end
 
-      context "the wrong pincode" do
-        it "does not get the access" do
-          is_expected.not_to permit(nil, event_context2)
-        end
-      end
+  context "user is the anonymous" do
+    let(:anon_pincodeless) { UserContext.new(nil, {}) }
+    let(:anon_pincoded) { UserContext.new(nil, cookies) }
+
+    permissions :new?, :create? do
+      it { is_expected.not_to permit(anon_pincoded) }
+    end
+
+    permissions :destroy?, :edit?, :update?  do
+      it { is_expected.not_to permit(anon_pincoded, event_pincoded) }
+    end
+
+    permissions :show? do
+      it { is_expected.to permit(anon_pincoded, event_pincoded) }
+      it { is_expected.to permit(anon_pincodeless, event_pincodeless)}
     end
   end
 end

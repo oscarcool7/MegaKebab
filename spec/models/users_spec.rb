@@ -1,21 +1,23 @@
 require "rails_helper"
 
 RSpec.describe User, type: :model do
-  describe ".find_for_facebook_oauth" do
+  describe ".find_for_oauth" do
     let(:access_token) do
       double(
         :access_token,
         provider: "facebook",
-        info: double(email: "oscarcool@rambler.ru"),
+        info: double(email: "oscarcool@rambler.ru", name: "Alex"),
         extra: double(raw_info: double(id: "5030781246991060"))
       )
     end
+
     context "when user is not found" do
       it "returns newly created user" do
-        user = User.find_for_facebook_oauth(access_token)
+        user = User.find_for_oauth(access_token)
 
         expect(user).to be_persisted
         expect(user.email).to eq "oscarcool@rambler.ru"
+        expect(user.name).to eq "Alex"
       end
     end
 
@@ -24,7 +26,7 @@ RSpec.describe User, type: :model do
       let!(:some_other_user) { FactoryBot.create(:user) }
 
       it "returns this user" do
-        expect(User.find_for_facebook_oauth(access_token)).to eq existing_user
+        expect(User.find_for_oauth(access_token)).to eq existing_user
       end
     end
 
@@ -33,7 +35,7 @@ RSpec.describe User, type: :model do
       let!(:some_other_user) { FactoryBot.create(:user) }
 
       it "returns this user" do
-        expect(User.find_for_facebook_oauth(access_token)).to eq existing_user
+        expect(User.find_for_oauth(access_token)).to eq existing_user
       end
     end
   end

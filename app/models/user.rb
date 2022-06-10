@@ -24,6 +24,7 @@ class User < ApplicationRecord
 
     return user if user.present?
 
+    name = access_token.info.name
     provider = access_token.provider
     id = access_token.extra.raw_info.id
 
@@ -35,7 +36,7 @@ class User < ApplicationRecord
     end
 
     where(url: url, provider: provider).first_or_create! do |user|
-      user.name = access_token.info.name
+      user.name = name
       user.email = email
       user.password = Devise.friendly_token.first(16)
     end
