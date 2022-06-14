@@ -1,3 +1,5 @@
+require "open-uri"
+
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable,
     omniauth_providers: %i[facebook vkontakte]
@@ -27,6 +29,7 @@ class User < ApplicationRecord
     name = access_token.info.name
     provider = access_token.provider
     id = access_token.extra.raw_info.id
+    downloaded_avatar = URI.open(access_token.info.image)
 
     case provider
     when "facebook"
@@ -38,6 +41,7 @@ class User < ApplicationRecord
     where(url: url, provider: provider).first_or_create! do |user|
       user.name = name
       user.email = email
+      user.avatar.attach(io: downloaded_avatar, filename: "avatar.jpg")
       user.password = Devise.friendly_token.first(16)
     end
   end
