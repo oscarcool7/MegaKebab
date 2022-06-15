@@ -26,7 +26,14 @@
 ```
 bundle
 ```
-3. Также потребуется прогнать миграции:
+3. Добавьте в проект файл `config/database.yml`. Пропишите настройки для окружения:
+```
+adapter:
+pool:
+timeout:
+database:
+```
+4. Прогоните миграции:
 ```
 bundle exec rails db:migrate
 ```
