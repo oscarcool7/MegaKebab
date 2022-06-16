@@ -26,13 +26,7 @@
 ```
 bundle
 ```
-3. Добавьте в проект файл `config/database.yml`. Пропишите настройки для окружения:
-```
-adapter:
-pool:
-timeout:
-database:
-```
+3. Добавьте в проект файл `config/database.yml`. Пример настроек смотрите в файле `config/database_sample.yml`.
 4. Прогоните миграции:
 ```
 bundle exec rails db:migrate
