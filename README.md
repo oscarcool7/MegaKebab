@@ -26,7 +26,7 @@
 ```
 bundle
 ```
-3. Добавьте в проект файл `config/database.yml`. Пример настроек смотрите в файле `config/database_sample.yml`.
+3. Добавьте в проект файл `config/database.yml`. Пример настроек смотрите в файле `config/database.yml.sample`.
 4. Прогоните миграции:
 ```
 bundle exec rails db:migrate
