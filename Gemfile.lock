@@ -436,7 +436,7 @@ DEPENDENCIES
   pundit (~> 1.1)
   rails (~> 7.0.3)
   rails-i18n (~> 7.0.0)
-  resque
+  resque (~> 2.2)
   rspec-rails
   selenium-webdriver
   sprockets-rails

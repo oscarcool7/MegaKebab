@@ -24,7 +24,7 @@ gem "puma", "~> 5.0"
 gem "pundit", "~> 1.1"
 gem "rails", "~> 7.0.3"
 gem "rails-i18n", "~> 7.0.0"
-gem "resque"
+gem 'resque', '~> 2.2'
 gem "sprockets-rails"
 gem "stimulus-rails"
 gem "turbo-rails"
