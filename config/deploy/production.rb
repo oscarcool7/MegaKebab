@@ -12,7 +12,7 @@ server "megakebab.ru", user: "deploy", roles: %w[app db resque_worker web]
 # При запуске воркера загружать Rails приложение
 set :resque_environment_task, true
 # Будет запущен один воркер, обслуживающий очереди
-set :workers, { "#{fetch(:application)}*" => 1 }
+set :workers, { "megakebab*" => 1 }
 
 # role-based syntax
 # ==================

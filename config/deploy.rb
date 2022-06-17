@@ -1,7 +1,7 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.17.0"
 
-set :application, "myapp"
+set :application, "megakebab"
 set :repo_url, "git@github.com:oscarcool7/MegaKebab.git"
 
 set :deploy_to, "/home/deploy/www"

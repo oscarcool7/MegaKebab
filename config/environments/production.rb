@@ -91,7 +91,6 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  # Mailjet mailer
   config.action_mailer.delivery_method = :sendmail
 
   config.action_mailer.perform_deliveries = true
@@ -99,5 +98,5 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "megakebab.ru" }
 
   config.active_job.queue_adapter = :resque
-  config.active_job.queue_name_prefix = "megakebab_#{Rails.env}"
+  config.active_job.queue_name_prefix = "megakebab"
 end
